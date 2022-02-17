@@ -3,7 +3,7 @@ import { GlobalContext } from "core/GlobalContext";
 import Button from "./Button";
 
 const Navigation = () => {
-  const {lightMode: light} = useContext(GlobalContext);
+  const { state: { light }} = useContext(GlobalContext);
 
   return (
     <nav

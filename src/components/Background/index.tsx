@@ -11,7 +11,7 @@ import { useContext } from 'react';
 import { GlobalContext } from 'core/GlobalContext';
 
 const ResponsiveBackground = () => {
-  const { lightMode: light } = useContext(GlobalContext);
+  const { state: { light } } = useContext(GlobalContext);
   const [portrait, setPortrait] = useState<string>();
   const [landscape, setLandscape] = useState<string>();
   const [image, setImage] = useState<string>();

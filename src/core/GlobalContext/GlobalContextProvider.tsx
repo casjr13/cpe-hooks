@@ -1,18 +1,15 @@
-import { PropsWithChildren, useState } from 'react';
+import { useReducer } from 'react';
+import { PropsWithChildren } from 'react';
 import { GlobalContext } from './';
+import { initialState, reducer} from './Reducer';
 
 interface Props { }
 
 const GlobalContextProvider = ({ children }: PropsWithChildren<Props>) => {
-  const [light, setLight] = useState<boolean>(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <GlobalContext.Provider 
-      value={{
-        lightMode: light,
-        changeLightMode: setLight,
-      }}
-    >
+    <GlobalContext.Provider value={{state, dispatch}}>
       {children}
     </GlobalContext.Provider>
   );
