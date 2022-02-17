@@ -7,12 +7,11 @@ import lightLandscape from './ThisChristography-20210524.jpg';
 // Dark
 import darkPortrait from './ThisChristography-20200912-12.jpg';
 import darkLandscape from './ThisChristography-20190703.jpg';
+import { useContext } from 'react';
+import { GlobalContext } from 'core/GlobalContext';
 
-interface Props {
-  light: boolean
-}
-
-const ResponsiveBackground = ({ light }: Props) => {
+const ResponsiveBackground = () => {
+  const { lightMode: light } = useContext(GlobalContext);
   const [portrait, setPortrait] = useState<string>();
   const [landscape, setLandscape] = useState<string>();
   const [image, setImage] = useState<string>();
@@ -21,7 +20,6 @@ const ResponsiveBackground = ({ light }: Props) => {
     // Aspect ratio: height / width
     const ratio = window.innerHeight / window.innerWidth;
     setImage(ratio > 1 ? portrait : landscape);
-    console.log("RESIZE");
   }
 
   useEffect(() => {
