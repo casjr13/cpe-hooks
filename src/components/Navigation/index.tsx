@@ -15,9 +15,14 @@ const Navigation = () => {
         left: 0,
         width: '100%',
         height: 64,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingLeft: 16,
+        paddingRight: 16,
       }}
     >
-      Shutup, Block-K.
+      <div>Shutup, Block-K.</div>
       <Button />
     </nav>
   );
