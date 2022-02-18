@@ -9,9 +9,10 @@ export type GlobalContextType = {
 
 export const defaultContext: GlobalContextType = {
   state: initialState,
-  dispatch: () => {},
+  dispatch: () => { },
 };
 
 export const GlobalContext = createContext<GlobalContextType>(defaultContext);
 
 export { default as GlobalContextProvider } from './GlobalContextProvider';
+export * from './Reducer/actions';

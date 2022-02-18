@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { GlobalContext } from 'core/GlobalContext';
-import { updateImage } from 'core/GlobalContext/Reducer/actions';
+import useResponsiveLightDarkThemedBackgrounds from 'hooks/useResponsivedLightDarkThemedBackground';
 
 // Light
 import lightPortrait from './ThisChristography-20201010-3.jpg';
@@ -11,31 +11,14 @@ import darkPortrait from './ThisChristography-20200912-12.jpg';
 import darkLandscape from './ThisChristography-20190703.jpg';
 
 const ResponsiveBackground = () => {
-  const { state: { light, image }, dispatch } = useContext(GlobalContext);
-  const [portrait, setPortrait] = useState<string>("");
-  const [landscape, setLandscape] = useState<string>("");
+  const { state: { image } } = useContext(GlobalContext);
 
-  const handleResize = () => {
-    // Aspect ratio: height / width
-    const ratio = window.innerHeight / window.innerWidth;
-    const newImage = ratio > 1 ? portrait : landscape;
-    if (newImage !== image) {
-      dispatch(updateImage(newImage));
-    }
-  }
-
-  useEffect(() => {
-    setPortrait(light ? lightPortrait : darkPortrait);
-    setLandscape(light ? lightLandscape : darkLandscape);
-  }, [light])
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    }
+  useResponsiveLightDarkThemedBackgrounds({
+    portrait: lightPortrait,
+    landscape: lightLandscape,
+  }, {
+    portrait: darkPortrait,
+    landscape: darkLandscape,
   });
 
   return (
